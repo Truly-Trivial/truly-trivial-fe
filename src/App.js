@@ -37,9 +37,11 @@ export default class App extends Component {
                   <div>
                     <Link to='/'><button onClick={this.clearToken}>Log out + home page</button>
                     </Link>
-                    <Link to='/quiz'>QUIZ PAGE</Link>
-                    <Link to='/favorites'>FAVORITES PAGE</Link>
-                    <Link to='/about'>ABOUT US PAGE</Link>
+                    <div>
+                      <Link to='/quiz'>QUIZ PAGE</Link>
+                      <Link to='/favorites'>FAVORITES PAGE</Link>
+                      <Link to='/about'>ABOUT US PAGE</Link>
+                    </div>
                   </div>
                   <Switch>
                       <Route 
