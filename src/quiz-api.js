@@ -28,3 +28,13 @@ export function fetchQuestion() {
         return { error: e.message }
     }
 }
+
+export function randomizeAnswers(answersToRandomize) {
+
+    for (var i = answersToRandomize.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = answersToRandomize[i];
+        answersToRandomize[i] = answersToRandomize[j];
+        answersToRandomize[j] = temp;
+    }
+}

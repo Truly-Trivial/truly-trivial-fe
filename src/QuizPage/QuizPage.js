@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchQuestion } from '../quiz-api.js';
+import { fetchQuestion, randomizeAnswers } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 export default class QuizPage extends Component {
@@ -27,12 +27,27 @@ export default class QuizPage extends Component {
                 questionCount: 1, 
             })
 
+            this.handleRandomizer();
+
         } catch {
             console.log(e.message)
         }
     }
 
+    handleRandomizer = async (e) => {
+        try {
+            const unrandomizedAnswers = this.state.currentQuestion.incorrect_answers;
+            unrandomizedAnswers.push(this.state.currentQuestion.correct_answer)
+            await randomizeAnswers(unrandomizedAnswers);
+
+            this.setState({ randomizedAnswers: unrandomizedAnswers })
+        } catch(e) {
+            console.log(e.message);
+        }  
+    }
+    
     render() {
+
         const html = this.state.currentQuestion.question
         return (
             <div>
@@ -47,11 +62,11 @@ export default class QuizPage extends Component {
                     <p>
                         {ReactHtmlParser(html)}
                     </p>
-                        {/* {
+                        {
                             this.state.randomizedAnswers.map((answer) => {
-                            return <button type="radio" name="multiple-choice" value={answer}></button>
+                            return <button type="radio" name="multiple-choice" value={answer} key={answer}>{answer}</button>
                             })
-                        } */}
+                        }
                     <input className="bet"></input> 
                     <button>Submit Answer</button>
                     <button>Favorite Button</button>
