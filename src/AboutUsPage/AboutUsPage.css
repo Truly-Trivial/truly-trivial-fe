@@ -70,3 +70,19 @@
         flex-wrap: wrap;
     }
 }
+
+
+.logo-holder {
+    background-image: url('../backgrounds/truly_trivial_1.png');
+    width: 363px;
+    height: 266px;
+    animation: logo 2s infinite;
+}
+
+@keyframes logo {
+    0% { background-image: url('../backgrounds/truly_trivial_1.png'); }
+    25% { background-image: url('../backgrounds/truly_trivial_2.png'); }
+    50% { background-image: url('../backgrounds/truly_trivial_3.png'); }
+    75% { background-image: url('../backgrounds/truly_trivial_4.png'); }
+    100% { background-image: url('../backgrounds/truly_trivial_5.png'); }
+}
