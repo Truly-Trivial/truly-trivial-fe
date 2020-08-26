@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { fetchQuestion, randomizeAnswers } from '../quiz-api.js';
+import { fetchQuestion, randomizeAnswers, removeEncoding } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+
+//const trimApostrophe = someString => someString.replace('&#039;', '\'')
 
 export default class QuizPage extends Component {
 
@@ -9,6 +11,8 @@ export default class QuizPage extends Component {
         money: 0,
         questionCount: 0,
         randomizedAnswers: [],
+        guess: '',
+        bet: 0,
     }
 
     componentDidMount = async () => {
@@ -16,6 +20,25 @@ export default class QuizPage extends Component {
             this.props.history.push('/')
         }
     }
+
+    onBetChange = async (e) => {
+        await this.setState({
+            bet: e.target.value,
+        })
+    }
+
+    onValueChange = async (e) => {
+        console.log(this.state);
+        console.log(e.target.value);
+
+        await this.setState({
+          guess: this.state.randomizedAnswers[e.target.value]
+        });
+
+        console.log(this.state);
+        console.log(this.state.guess);
+      }
+
 
     handleQuizStart = async (e) => {
         e.preventDefault();
@@ -45,10 +68,28 @@ export default class QuizPage extends Component {
             console.log(e.message);
         }  
     }
+
+    handleAnswer = async (e) => {
+        e.preventDefault();
+        try {
+            if (this.state.guess === this.state.currentQuestion.correct_answer) {
+                await this.setState({
+                    money: Number(this.state.money) + Number(this.state.bet)
+                });
+            } else {
+                await this.setState({
+                    money: Number(this.state.money) - Number(this.state.bet)
+                });
+            }
+        } catch(e) {
+            console.log(e.message);
+        }
+    }
     
     render() {
 
         const html = this.state.currentQuestion.question
+        
         return (
             <div>
                 <div className="start-quiz">
@@ -58,19 +99,22 @@ export default class QuizPage extends Component {
                         </label>
                     </form>
                 </div>
-                <div className="question-display">
+                <form className="question-display" onSubmit={this.handleAnswer}>
                     <p>
                         {ReactHtmlParser(html)}
                     </p>
                         {
-                            this.state.randomizedAnswers.map((answer) => {
-                            return <button type="radio" name="multiple-choice" value={answer} key={answer}>{answer}</button>
+                            this.state.randomizedAnswers.map((answer, i) => {    
+                            return <label>
+                                    {ReactHtmlParser(answer)}
+                                <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
+                                </label>
                             })
                         }
-                    <input className="bet"></input> 
+                    <input className="bet" onChange={this.onBetChange} type="number"></input> 
                     <button>Submit Answer</button>
                     <button>Favorite Button</button>
-                </div>
+                </form>
                 <div className="quiz-end">
                     <p>You have ${this.state.money}</p>
                     <button>Take a New Quiz</button>

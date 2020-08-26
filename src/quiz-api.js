@@ -38,3 +38,5 @@ export function randomizeAnswers(answersToRandomize) {
         answersToRandomize[j] = temp;
     }
 }
+
+
