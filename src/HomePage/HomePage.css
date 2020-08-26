@@ -1,0 +1,77 @@
+
+.auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+label {
+    color: white;
+    display: block;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: bold;
+}
+
+a {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.scroll-box {
+    border: solid 3px rgba(255, 184, 0, 1);
+    overflow: scroll;
+    background-color: white;
+    color: black;
+    width: 250px;
+    height: 100px;
+    font-size: small;
+    font-family: 'Darker Grotesque', sans-serif;
+    margin: 5px;
+}
+
+.logo {
+    height:400px;
+    width: 400px;
+    margin-top: -70px;
+    margin-bottom: -90px;
+    animation: fadeIn 2s infinite alternate;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+span {
+    color: white;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: bold;
+    font-size: large;
+}
+
+.sign-in, .sign-up {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 5px;
+}
+input {
+    background-color: rgba(69, 233, 193, 1);
+    color: black;
+}
+
+.authButton {
+    background-color: rgba(255, 184, 0, 1);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
