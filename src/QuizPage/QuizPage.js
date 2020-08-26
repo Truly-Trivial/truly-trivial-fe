@@ -11,7 +11,7 @@ export default class QuizPage extends Component {
         questionCount: 0,
         randomizedAnswers: [],
         guess: '',
-        bet: 0,
+        bet: 1000,
         endGame: true,
         hasPlayed: false,
         lastAnswerCorrect: true,
@@ -111,8 +111,6 @@ export default class QuizPage extends Component {
     }
 
     handleFavorite = async () => {
-        console.log('hey im a button');
-        console.log(this.state.currentQuestion);
         try {
             const question = this.state.currentQuestion
             await createFavorite({
@@ -175,7 +173,7 @@ export default class QuizPage extends Component {
                                     </label>
                                 })
                             }
-                        <input min="0" className="bet" onChange={this.onBetChange} type="number"></input> 
+                        <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
                         <button>Submit Answer</button>
                     </form>
                     <button onClick={this.handleFavorite}>Add This Question to Favorites</button>
