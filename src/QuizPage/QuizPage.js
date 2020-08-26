@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { fetchQuestion, randomizeAnswers, createFavorite } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import './QuizPage.css';
 
 export default class QuizPage extends Component {
 
