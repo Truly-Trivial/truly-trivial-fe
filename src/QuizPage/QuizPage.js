@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { fetchQuestion, randomizeAnswers, removeEncoding } from '../quiz-api.js';
+import { fetchQuestion, randomizeAnswers, createFavorite } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 export default class QuizPage extends Component {
@@ -104,15 +104,31 @@ export default class QuizPage extends Component {
                 })
 
                 this.handleRandomizer();
-
             }
+        } catch(e) {
+            console.log(e.message);
+        }
+    }
+
+    handleFavorite = async () => {
+        console.log('hey im a button');
+        console.log(this.state.currentQuestion);
+        try {
+            const question = this.state.currentQuestion
+            await createFavorite({
+                category: question.category,
+                type: question.type,
+                difficulty: question.difficulty,
+                question: question.question,
+                correct_answer: question.correct_answer,
+                incorrect_answers: question.incorrect_answers
+            })
         } catch(e) {
             console.log(e.message);
         }
     }
     
     render() {
-
         const html = this.state.currentQuestion.question
         
         return (
@@ -162,7 +178,7 @@ export default class QuizPage extends Component {
                         <input min="0" className="bet" onChange={this.onBetChange} type="number"></input> 
                         <button>Submit Answer</button>
                     </form>
-                    <button>Favorite Button</button>
+                    <button onClick={this.handleFavorite}>Add This Question to Favorites</button>
                 </div>
                 }
             </div>

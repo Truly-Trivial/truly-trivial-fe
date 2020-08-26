@@ -55,8 +55,19 @@ export function fetchFavorites() {
     const token = localStorage.getItem('token');
 
     try {
-        return request
-            .get(`${URL}/api/favorites`)
+        return request.get(`${URL}/api/favorites`)
+            .set('Authorization', token)
+
+    } catch(e) {
+        return { error: e.message }
+    }
+}
+
+export function fetchFavorite(id) {
+    const token = localStorage.getItem('token');
+
+    try {
+        return request.get(`${URL}/api/favorites/${id}`)
             .set('Authorization', token)
     } catch(e) {
         return { error: e.message }
@@ -68,7 +79,8 @@ export function deleteFavorite(id) {
 
     try{
         return request.delete(`${URL}/api/favorites/${id}`)
-        .set('Authorization', token);
+            .set('Authorization', token)
+
     } catch(e) {
         return { error: e.message }
     }
