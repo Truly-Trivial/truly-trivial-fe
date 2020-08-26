@@ -126,6 +126,10 @@ export default class QuizPage extends Component {
             console.log(e.message);
         }
     }
+
+    handleFavoriteRedirect = () => {
+        this.props.history.push('/favorites');
+    }
     
     render() {
         const html = this.state.currentQuestion.question
@@ -156,7 +160,7 @@ export default class QuizPage extends Component {
                     <form onSubmit={this.handleQuizStart}>
                         <label>
                             <button>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
-                            <button>View Your Favorite Questions</button>
+                            <button onClick={this.handleFavoriteRedirect}>View Your Favorite Questions</button>
                         </label>
                     </form>
                 </div> 
