@@ -17,8 +17,8 @@ export default class DetailPage extends Component {
                 const data = await fetchFavorite(this.props.match.params.id)
                 const fetchedQuestion = data.body[0]
 
-                this.setState({
-                    question: fetchedQuestion
+                await this.setState({
+                    question: fetchedQuestion,
                 })
             }
         } catch(e) {
@@ -36,10 +36,25 @@ export default class DetailPage extends Component {
     }
 
     render() {
-        return (
-            <div>
+        const questionVar = this.state.question
 
-                <button onClick={this.handleDelete}></button>
+        return (
+            
+            <div>
+                <h3>{ReactHtmlParser(this.state.question.question)}</h3>
+                <p>Correct Answer: {ReactHtmlParser(this.state.question.correct_answer)}</p>
+                <p>Incorrect Answers:
+                    {
+                    questionVar.incorrect_answers &&
+                    JSON.parse(this.state.question.incorrect_answers).map((answer) => {
+                        return <p>{answer}</p>
+                    })
+                    } 
+                </p>
+                <p>Category: {this.state.question.category}</p>
+                <p>Difficulty: {this.state.question.difficulty}</p>
+
+                <button onClick={this.handleDelete}>Remove From Favorites</button>
             </div>
         )
     }
