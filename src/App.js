@@ -13,42 +13,66 @@ import DetailPage from './DetailPage/DetailPage.js';
 import AboutUsPage from './AboutUsPage/AboutUsPage.js';
 
 export default class App extends Component {
+  state = {
+    token: localStorage.getItem('token'),
+  }
+
+  handleToken = (token) => {
+    this.setState({ token: token })
+
+    localStorage.setItem('token', token)
+  }
+
+  clearToken = () => {
+    this.setState({ token: '' })
+
+    localStorage.setItem('token', '')
+  }
+
   render() {
       return (
           <div>
               <Router>
                 <main>
                   <div>
-                    <Link to='/'>HOME PAGE</Link>
-                    <Link to='/quiz'>QUIZ PAGE</Link>
-                    <Link to='/favorites'>FAVORITES PAGE</Link>
-                    <Link to='/about'>ABOUT US PAGE</Link>
+                    <Link to='/'><button onClick={this.clearToken}>Log out + home page</button>
+                    </Link>
+                    <div>
+                      <Link to='/quiz'>QUIZ PAGE</Link>
+                      <Link to='/favorites'>FAVORITES PAGE</Link>
+                      <Link to='/about'>ABOUT US PAGE</Link>
+                    </div>
                   </div>
                   <Switch>
                       <Route 
                           path="/" 
                           exact
-                          render={(routerProps) => <HomePage {...routerProps} />} 
+                          render={(routerProps) => <HomePage handleToken={this.handleToken} token={this.state.token}
+                          {...routerProps} />} 
                       />
                       <Route 
                           path="/quiz" 
                           exact
-                          render={(routerProps) => <QuizPage {...routerProps} />} 
+                          render={(routerProps) => <QuizPage handleToken={this.handleToken} token={this.state.token}
+                          {...routerProps} />} 
                       />
                       <Route 
                         path="/favorites" 
                         exact
-                        render={(routerProps) => <FavoritesPage {...routerProps} />} 
+                        render={(routerProps) => <FavoritesPage handleToken={this.handleToken} token={this.state.token}
+                        {...routerProps} />} 
                       />
                       <Route 
                           path="/detail" 
                           exact
-                          render={(routerProps) => <DetailPage {...routerProps} />} 
+                          render={(routerProps) => <DetailPage handleToken={this.handleToken} token={this.state.token}
+                          {...routerProps} />} 
                       />
                       <Route 
                           path="/about" 
                           exact
-                          render={(routerProps) => <AboutUsPage {...routerProps} />} 
+                          render={(routerProps) => <AboutUsPage handleToken={this.handleToken} token={this.state.token}
+                          {...routerProps} />} 
                       />
                   </Switch>
                 </main>
