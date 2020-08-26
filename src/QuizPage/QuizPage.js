@@ -1,7 +1,8 @@
 /* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
-import { fetchQuestion, randomizeAnswers, removeEncoding } from '../quiz-api.js';
+import { fetchQuestion, randomizeAnswers, createFavorite } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import './QuizPage.css';
 
 export default class QuizPage extends Component {
 
@@ -11,7 +12,11 @@ export default class QuizPage extends Component {
         questionCount: 0,
         randomizedAnswers: [],
         guess: '',
-        bet: 0,
+        bet: 1000,
+        endGame: true,
+        hasPlayed: false,
+        lastAnswerCorrect: true,
+        lastAnswer: '',
     }
 
     componentDidMount = async () => {
@@ -46,7 +51,8 @@ export default class QuizPage extends Component {
             const questionData = await fetchQuestion(this.props.token)
             this.setState({ 
                 currentQuestion: questionData.body.results[0], 
-                questionCount: 1, 
+                questionCount: 1,
+                endGame: false, 
             })
 
             this.handleRandomizer();
@@ -71,55 +77,109 @@ export default class QuizPage extends Component {
     handleAnswer = async (e) => {
         e.preventDefault();
         try {
-            if (this.state.guess === this.state.currentQuestion.correct_answer) {
-                await this.setState({
-                    money: Number(this.state.money) + Number(this.state.bet)
-                });
+            if (this.state.questionCount === 10) {
+                this.setState({
+                    endGame: true,
+                    questionCount: 0,
+                    hasPlayed: true,
+                })
             } else {
-                await this.setState({
-                    money: Number(this.state.money) - Number(this.state.bet)
-                });
+                if (this.state.guess === this.state.currentQuestion.correct_answer) {
+                    await this.setState({
+                        money: Number(this.state.money) + Number(this.state.bet),
+                        lastAnswerCorrect: true,
+                    });
+                } else {
+                    await this.setState({
+                        money: Number(this.state.money) - Number(this.state.bet),
+                        lastAnswerCorrect: false,
+                        lastAnswer: this.state.currentQuestion.correct_answer,
+                    });
+                }
+    
+                const questionData = await fetchQuestion(this.props.token)
+                this.setState({ 
+                    currentQuestion: questionData.body.results[0], 
+                    questionCount: this.state.questionCount + 1,
+                    randomizedAnswers: [],
+                })
+
+                this.handleRandomizer();
             }
+        } catch(e) {
+            console.log(e.message);
+        }
+    }
+
+    handleFavorite = async () => {
+        try {
+            const question = this.state.currentQuestion
+            await createFavorite({
+                category: question.category,
+                type: question.type,
+                difficulty: question.difficulty,
+                question: question.question,
+                correct_answer: question.correct_answer,
+                incorrect_answers: question.incorrect_answers
+            })
         } catch(e) {
             console.log(e.message);
         }
     }
     
     render() {
-
         const html = this.state.currentQuestion.question
         
         return (
             <div>
+
+                <div className="money-display">
+                    { 
+                    this.state.questionCount > 1 &&
+                    <p>
+                        {
+                        this.state.lastAnswerCorrect 
+                        ?
+                        'Correct!'
+                        :
+                        `Too bad! The correct answer was ${this.state.lastAnswer}`
+                        }
+                    </p>
+                    }
+        
+                    <p>You have ${this.state.money}</p>
+                </div>
+
+                { this.state.endGame 
+                ? 
                 <div className="start-quiz">
                     <form onSubmit={this.handleQuizStart}>
                         <label>
-                            <button>Start Quiz!!!!</button>
+                            <button>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
+                            <button>View Your Favorite Questions</button>
                         </label>
                     </form>
+                </div> 
+                :
+                <div>
+                    <form className="question-display" onSubmit={this.handleAnswer}>
+                        <p>
+                            {ReactHtmlParser(html)}
+                        </p>
+                            {
+                                this.state.randomizedAnswers.map((answer, i) => {    
+                                return <label>
+                                        {ReactHtmlParser(answer)}
+                                    <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
+                                    </label>
+                                })
+                            }
+                        <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
+                        <button>Submit Answer</button>
+                    </form>
+                    <button onClick={this.handleFavorite}>Add This Question to Favorites</button>
                 </div>
-                <form className="question-display" onSubmit={this.handleAnswer}>
-                    <p>
-                        {ReactHtmlParser(html)}
-                    </p>
-                        {
-                            this.state.randomizedAnswers.map((answer, i) => {    
-                            return <label>
-                                    {ReactHtmlParser(answer)}
-                                <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
-                                </label>
-                            })
-                        }
-                    <input className="bet" onChange={this.onBetChange} type="number"></input> 
-                    <button>Submit Answer</button>
-                    <button>Favorite Button</button>
-                </form>
-                <div className="quiz-end">
-                    <p>You have ${this.state.money}</p>
-                    <button>Take a New Quiz</button>
-                    <button>View Your Favorite Questions</button>
-                </div>
-
+                }
             </div>
         )
     }

@@ -12,13 +12,18 @@ export default class AuthPage extends Component {
     handleSignUp = async (e) => {
         e.preventDefault();
 
-        const user = await signUp({
-            email: this.state.signupEmail,
-            password: this.state.signupPassword
-        });
-
-        this.props.handleToken(user.body.token);
-        this.props.history.push('/quiz');
+        try {
+            const user = await signUp({
+                email: this.state.signupEmail,
+                password: this.state.signupPassword
+            });
+    
+            this.props.handleToken(user.body.token);
+            this.props.history.push('/quiz');
+        } catch(e) {
+            console.log(e.response.body.error);
+            alert('Email is Already Taken');
+        }
     }
 
 
@@ -34,8 +39,8 @@ export default class AuthPage extends Component {
             this.props.history.push('/quiz');
         } catch(e) {
             console.log(e.response.body.error);
-        }
-        
+            alert('Incorrect Login Information');
+        }  
     }
 
     componentDidCatch(err, errinfo) {

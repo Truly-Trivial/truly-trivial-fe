@@ -39,4 +39,50 @@ export function randomizeAnswers(answersToRandomize) {
     }
 }
 
+export function createFavorite(questionData) {
+    const token = localStorage.getItem('token');
+
+    try {
+        return request.post(`${URL}/api/favorites`)
+        .send(questionData)
+        .set('Authorization', token)
+    } catch(e) {
+        return { error: e.message }
+    }
+}
+
+export function fetchFavorites() {
+    const token = localStorage.getItem('token');
+
+    try {
+        return request.get(`${URL}/api/favorites`)
+            .set('Authorization', token)
+
+    } catch(e) {
+        return { error: e.message }
+    }
+}
+
+export function fetchFavorite(id) {
+    const token = localStorage.getItem('token');
+
+    try {
+        return request.get(`${URL}/api/favorites/${id}`)
+            .set('Authorization', token)
+    } catch(e) {
+        return { error: e.message }
+    }
+}
+
+export function deleteFavorite(id) {
+    const token = localStorage.getItem('token');
+
+    try{
+        return request.delete(`${URL}/api/favorites/${id}`)
+            .set('Authorization', token)
+
+    } catch(e) {
+        return { error: e.message }
+    }
+}
 

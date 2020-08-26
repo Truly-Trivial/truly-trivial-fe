@@ -63,7 +63,7 @@ export default class App extends Component {
                         {...routerProps} />} 
                       />
                       <Route 
-                          path="/detail" 
+                          path="/detail/:id" 
                           exact
                           render={(routerProps) => <DetailPage handleToken={this.handleToken} token={this.state.token}
                           {...routerProps} />} 
