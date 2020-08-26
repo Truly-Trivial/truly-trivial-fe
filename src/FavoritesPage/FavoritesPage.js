@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import bob from './bob_barker_sticker_face_2.png';
 import './FavoritesPage.css';
+import Header  from '../Header.js';
 import { fetchFavorites } from '../quiz-api';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
@@ -32,6 +33,7 @@ export default class FavoritesPage extends Component {
     render() {
         return (
             <>
+            <Header></Header>
             <div>
                 {
                     this.state.favorites.length > 0 &&

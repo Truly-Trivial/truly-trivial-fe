@@ -34,15 +34,6 @@ export default class App extends Component {
           <div>
               <Router>
                 <main>
-                  <div>
-                    <Link to='/'><button onClick={this.clearToken}>Log out + home page</button>
-                    </Link>
-                    <div>
-                      <Link to='/quiz'>QUIZ PAGE</Link>
-                      <Link to='/favorites'>FAVORITES PAGE</Link>
-                      <Link to='/about'>ABOUT US PAGE</Link>
-                    </div>
-                  </div>
                   <Switch>
                       <Route 
                           path="/" 
@@ -75,6 +66,9 @@ export default class App extends Component {
                           {...routerProps} />} 
                       />
                   </Switch>
+                  <div>
+                    <Link to='/'><button onClick={this.clearToken}>Log Out</button></Link>
+                  </div>
                 </main>
               </Router>
           </div>

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { fetchFavorite, deleteFavorite, fetchFavorites } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './DetailPage.css';
+import Header from '../Header.js'
 
 export default class DetailPage extends Component {
     state = {
@@ -42,6 +43,7 @@ export default class DetailPage extends Component {
         return (
             
             <div>
+                <Header></Header>
                 <h3>{ReactHtmlParser(this.state.question.question)}</h3>
                 <p>Correct Answer: {ReactHtmlParser(this.state.question.correct_answer)}</p>
                 <p>Incorrect Answers:
