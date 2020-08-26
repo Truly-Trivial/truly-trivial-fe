@@ -1,8 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { Component } from 'react';
 import { fetchQuestion, randomizeAnswers, removeEncoding } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
-//const trimApostrophe = someString => someString.replace('&#039;', '\'')
 
 export default class QuizPage extends Component {
 
