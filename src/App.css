@@ -16,6 +16,7 @@
     --color-6: rgba(255, 184, 0, 1);
     --color-7: rgba(255, 136, 10, 1);
     --color-8: rgba(255, 87, 20, 1);
+    --color-money: rgba(133, 187, 101, 1);
 }
 
 /* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_glowing_text */
@@ -65,52 +66,93 @@
 
 @keyframes glitter {
     0% {
-    background-image: url('./backgrounds/glitter1.png');
+        background-image: url('./backgrounds/glitter1.png');
     }
     12% {
-    background-image: url('./backgrounds/glitter6.png');
+        background-image: url('./backgrounds/glitter6.png');
     }
     24% {
-    background-image: url('./backgrounds/glitter2.png');
+        background-image: url('./backgrounds/glitter2.png');
     }
     36% {
-    background-image: url('./backgrounds/glitter7.png');
+        background-image: url('./backgrounds/glitter7.png');
     }
     48% {
-    background-image: url('./backgrounds/glitter3.png');
+        background-image: url('./backgrounds/glitter3.png');
     }
     60% {
-    background-image: url('./backgrounds/glitter8.png');
+        background-image: url('./backgrounds/glitter8.png');
     }
     72% {
-    background-image: url('./backgrounds/glitter4.png');
+        background-image: url('./backgrounds/glitter4.png');
     }
     84% {
-    background-image: url('./backgrounds/glitter9.png');
+        background-image: url('./backgrounds/glitter9.png');
     }
     100% {
-    background-image: url('./backgrounds/glitter5.png');
+        background-image: url('./backgrounds/glitter5.png');
     }
-
 }
 
-
-
-
-
-
-
-.glitter-test-area {
-    font-size: 50px;
-    text-align: center;
+.confetti-container {
     width: 100%;
-    height: 400px;
+    height: 100%;
 }
 
-
-.black-background {
-    text-align: center;
-    font-size: 50px;
-    background-color: var(--color-0);
-    height: 400px;
+/* https://forum.webflow.com/t/add-falling-confetti-with-css/103687 */
+.confetti {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 50px;
+    height: 25px;
+    background-color: var(--color-money);
+    position: absolute;
+    left: 50%;
+    animation: confetti 5s ease-in-out -2s infinite;
+    transform-origin: left top;
+    background-image: url('./FavoritesPage/bob_barker_sticker_face_2.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25px 20px;
+    padding: 2px;
 }
+.confetti:nth-child(1) {
+    background-color: var(--color-money); left: 10%; animation-delay: 0;
+}
+.confetti:nth-child(2) {
+    background-color: var(--color-money); right: 20%; animation-delay: -5s;
+}
+.confetti:nth-child(3) {
+    background-color: var(--color-money); left: 30%; animation-delay: -3s;
+}
+.confetti:nth-child(4) {
+    background-color: var(--color-money); left: 40%; animation-delay: -2.5s;
+}
+.confetti:nth-child(5) {
+    background-color: var(--color-money); right: 50%; animation-delay: -4s;
+}
+.confetti:nth-child(6) {
+    background-color: var(--color-money); right: 60%; animation-delay: -6s;
+}
+.confetti:nth-child(7) {
+    background-color: var(--color-money); left: 70%; animation-delay: -1.5s;
+}
+.confetti:nth-child(8) {
+    background-color: var(--color-money); right: 80%; animation-delay: -2s;
+}
+.confetti:nth-child(9) {
+    background-color: var(--color-money); left: 90%; animation-delay: -3.5s;
+}
+.confetti:nth-child(10) {
+    background-color: var(--color-money); left: 100%; animation-delay: -2.5s;
+}
+
+@keyframes confetti {
+    0% { transform: rotateZ(15deg) rotateY(0deg) translate(0,0); }
+    25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw,20vh); }
+    50% { transform: rotateZ(15deg) rotateY(720deg) translate(5vw,60vh); }
+    75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
+    100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
+}
+
