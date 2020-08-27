@@ -41,8 +41,8 @@ export default class FavoritesPage extends Component {
             <div className="fav-container glitter-green">
                 {
                     this.state.favorites.length > 0 &&
-                    this.state.favorites.map((favorite) => {
-                        return <div className="fav-div">
+                    this.state.favorites.map((favorite, i) => {
+                        return <div className="fav-div" key={'favorite' + i}>
                             <p className="question">{ReactHtmlParser(favorite.question)}</p>
                             <Link to={`/detail/${favorite.id}`} className="detail-link">View Details</Link>
                             </div>

@@ -180,7 +180,7 @@ export default class QuizPage extends Component {
                             </p>
                                 {
                                     this.state.randomizedAnswers.map((answer, i) => {    
-                                    return <label>
+                                    return <label key={'answer' + i}>
                                             {ReactHtmlParser(answer)}
                                         <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
                                         </label>
