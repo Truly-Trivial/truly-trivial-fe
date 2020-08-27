@@ -8,9 +8,10 @@ export default class AboutUsPage extends Component {
         const confettiArray = [1,2,3,4,5,6,7,8,9,10];
 
         return (
-            <div className='about-us-info'>
+            <>
                 <Header></Header>
-                <h1 className='about-us-title glow-yellow'>About Us</h1>
+            <div className='about-us-info'>
+                <h1 className='about-us-title glow-yellow'>Meet Your Hosts!</h1>
                 <div className='confetti-container'>
                     {confettiArray.map((confettiItem, i) => {
                         return <div key={'conf' + i} className='confetti'><span className='dollar'>$</span><span className='dollar'>$</span></div>
@@ -88,6 +89,7 @@ export default class AboutUsPage extends Component {
                     </div>
                 </div>
             </div>
+            </>
         )
     }
 }

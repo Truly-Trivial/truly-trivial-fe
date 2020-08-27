@@ -33,8 +33,9 @@ export default class FavoritesPage extends Component {
 
     render() {
         return (
-            <div  className="fav-page">
+            <>
             <Header></Header>
+            <div  className="fav-page">
                 <h1 className="fav-questions glow-yellow">My Truly Trivial Trivia</h1>
                 <img className="barker" src={bob} alt="bob barker and his smiling face" />
             <div className="fav-container glitter-green">
@@ -51,6 +52,7 @@ export default class FavoritesPage extends Component {
             <div>
         </div>
         </div>
+        </>
         )
     }
 }

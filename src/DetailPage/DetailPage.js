@@ -43,9 +43,9 @@ export default class DetailPage extends Component {
         const questionVar = this.state.question
 
         return (
-            
-            <div className="detail-page">
+            <>
                 <Header></Header>
+            <div className="detail-page">
                 <div className="glitter-orange detail-glitter">
                 <div className="detail-display-box">
                     <h3 className="glow-yellow">{ReactHtmlParser(this.state.question.question)}</h3>
@@ -70,6 +70,7 @@ export default class DetailPage extends Component {
                 </div>
                 </div>
             </div>
+            </>
         )
     }
 }
