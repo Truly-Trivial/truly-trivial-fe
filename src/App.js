@@ -67,7 +67,7 @@ export default class App extends Component {
                       />
                   </Switch>
                   <div>
-                    <Link to='/'><button onClick={this.clearToken}>Log Out</button></Link>
+                    <Link to='/'><button className="logout-button" onClick={this.clearToken}>Log Out</button></Link>
                   </div>
                 </main>
               </Router>
