@@ -158,3 +158,8 @@
 body {
     background-color: black;
 }
+
+.logout-button {
+    margin-bottom: 50px;
+}
+

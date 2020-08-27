@@ -137,6 +137,9 @@ export default class QuizPage extends Component {
         
         return (
             <div className="quiz-div">
+                <div className="question-sign">
+                        Trivial Trivia
+                    </div>
 
                 <div className="money-display">
                     { 
@@ -166,24 +169,27 @@ export default class QuizPage extends Component {
                     </form>
                 </div> 
                 :
-                <div className="question-display">
-                    <form className="question-form" onSubmit={this.handleAnswer}>
-                        <p className="question-text">
-                            {ReactHtmlParser(html)}
-                        </p>
-                            {
-                                this.state.randomizedAnswers.map((answer, i) => {    
-                                return <label>
-                                        {ReactHtmlParser(answer)}
-                                    <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
-                                    </label>
-                                })
-                            }
-                        <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
-                        <br/>
-                        <button className="submit-answer-button">Submit Answer</button>
-                    </form>
-                    <button className="favorite-button" onClick={this.handleFavorite}>Add This Question to Favorites</button>
+                <div className="glitter-green rounded-border">
+                    <div className="question-display">
+                        
+                        <form className="question-form" onSubmit={this.handleAnswer}>
+                            <p className="question-text">
+                                {ReactHtmlParser(html)}
+                            </p>
+                                {
+                                    this.state.randomizedAnswers.map((answer, i) => {    
+                                    return <label>
+                                            {ReactHtmlParser(answer)}
+                                        <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
+                                        </label>
+                                    })
+                                }
+                            <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
+                            <br/>
+                            <button className="submit-answer-button">Submit Answer</button>
+                        </form>
+                        <button className="favorite-button" onClick={this.handleFavorite}>Add This Question to Favorites</button>
+                    </div>
                 </div>
                 }
             </div>
