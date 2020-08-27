@@ -66,7 +66,7 @@ export default class DetailPage extends Component {
                     <p className="detail-p">Difficulty: 
                     <div className="detail-sub">{this.state.question.difficulty}</div>
                     </p>
-                    <button onClick={this.handleDelete}>Remove From Favorites</button>
+                    <button onClick={this.handleDelete} className="detail-delete">Remove From Favorites</button>
                 </div>
                 </div>
             </div>
