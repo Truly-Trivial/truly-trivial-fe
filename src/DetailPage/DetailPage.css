@@ -1,0 +1,42 @@
+.detail-page {
+    font-family: 'Darker Grotesque', sans-serif;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    color: black;
+}
+
+.detail-display-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(19, 157, 132);
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.detail-glitter {
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.detail-p {
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.detail-sub {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+
