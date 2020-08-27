@@ -155,4 +155,6 @@
     75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
     100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
 }
-
+body {
+    background-color: black;
+}
