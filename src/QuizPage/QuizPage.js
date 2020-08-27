@@ -126,6 +126,7 @@ export default class QuizPage extends Component {
                 correct_answer: question.correct_answer,
                 incorrect_answers: question.incorrect_answers
             })
+            alert('Added to Favorites')
         } catch(e) {
             console.log(e.message);
         }
@@ -141,13 +142,12 @@ export default class QuizPage extends Component {
         return (
             <div className="quiz-div">
                 <div className="question-sign">
-                        Trivial Trivia
-                    </div>
-
+                    Trivial Trivia
+                </div>
                 <div className="money-display">
                     { 
                     this.state.questionCount > 1 &&
-                    <p>
+                    <p className="money-text">
                         {
                         this.state.lastAnswerCorrect 
                         ?
@@ -158,21 +158,20 @@ export default class QuizPage extends Component {
                     </p>
                     }
         
-                    <p>You have ${this.state.money}</p>
+                    <p className='dollar-display'>You have ${this.state.money}</p>
                 </div>
-
                 { this.state.endGame 
                 ? 
                 <div className="start-quiz">
                     <form onSubmit={this.handleQuizStart}>
-                        <label>
-                            <button>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
-                            <button className="add-to-favorites-button" onClick={this.handleFavoriteRedirect}>View Your Favorite Questions</button>
+                        <label className='margin-bottom'>
+                            <button className='start-quiz-button'>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
+                            <button className="view-favorites-button" onClick={this.handleFavoriteRedirect}>View Favorites</button>
                         </label>
                     </form>
                 </div> 
                 :
-                <div className="glitter-green rounded-border">
+                <div className="max-width margin-bottom glitter-green rounded-border">
                     <div className="question-display">
                         
                         <form className="question-form" onSubmit={this.handleAnswer}>
@@ -187,11 +186,11 @@ export default class QuizPage extends Component {
                                         </label>
                                     })
                                 }
-                            <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
+                            <br />Bet $ <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
                             <br/>
                             <button className="submit-answer-button">Submit Answer</button>
                         </form>
-                        <button className="favorite-button" onClick={this.handleFavorite}>Add This Question to Favorites</button>
+                        <button className="favorite-button" onClick={this.handleFavorite}>Add to Favorites</button>
                     </div>
                 </div>
                 }
