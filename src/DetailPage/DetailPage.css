@@ -1,0 +1,76 @@
+.detail-page {
+    font-family: 'Darker Grotesque', sans-serif;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    color: black;
+}
+
+.detail-display-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px;
+    padding: 10px;
+    background-color: rgb(19, 157, 132);
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.detail-glitter {
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+.detail-p {
+    margin-block-start: 5px;
+    margin-block-end: 5px;
+    color: black;
+    text-transform: uppercase;
+}
+
+.detail-sub {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.detail-delete {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px 12px;
+    border: 1px solid #cc4610;
+    border-radius: 15px;
+    background: #ff711a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff711a), to(#ffb700));
+    background: -moz-linear-gradient(top, #ff711a, #ffb700);
+    background: linear-gradient(to bottom, #ff711a, #ffb700);
+    -webkit-box-shadow: #ff890a 0px 0px 14px 0px;
+    -moz-box-shadow: #ff890a 0px 0px 14px 0px;
+    box-shadow: #ff890a 0px 0px 14px 0px;
+    text-shadow: #802c0a  1px 1px;
+    font: normal normal bold 20px;
+    color: #000000;
+    text-decoration: none;
+}
+.detail-delete:hover,
+.detail-delete:focus {
+    border: 1px solid #ff5714;
+    background: #ff881f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ff881f), to(#ffdc00));
+    background: -moz-linear-gradient(top, #ff881f, #ffdc00);
+    background: linear-gradient(to bottom, #ff881f, #ffdc00);
+    color: #000000;
+    text-decoration: none;
+}
+.detail-delete:active {
+    background: #cc4610;
+    background: -webkit-gradient(linear, left top, left bottom, from(#cc4610), to(#ffb700));
+    background: -moz-linear-gradient(top, #cc4610, #ffb700);
+    background: linear-gradient(to bottom, #cc4610, #ffb700);
+}

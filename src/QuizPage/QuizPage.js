@@ -65,7 +65,10 @@ export default class QuizPage extends Component {
 
     handleRandomizer = async (e) => {
         try {
-            const unrandomizedAnswers = this.state.currentQuestion.incorrect_answers;
+            const unrandomizedAnswers = [];
+            this.state.currentQuestion.incorrect_answers.map((answer) => {
+                return unrandomizedAnswers.push(answer)
+            });
             unrandomizedAnswers.push(this.state.currentQuestion.correct_answer)
             await randomizeAnswers(unrandomizedAnswers);
 
