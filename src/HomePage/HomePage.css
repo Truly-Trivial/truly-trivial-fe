@@ -1,3 +1,6 @@
+body {
+    background-color: var(--color-0);
+}
 
 .auth {
     display: flex;
@@ -5,6 +8,7 @@
     align-items: center;
     flex-direction: column;
 }
+
 label {
     color: white;
     display: block;
@@ -34,6 +38,7 @@ a {
     font-size: small;
     font-family: 'Darker Grotesque', sans-serif;
     margin: 5px;
+    padding: 5px;
 }
 
 .logo {
@@ -75,3 +80,6 @@ input {
     cursor: pointer;
 }
 
+.email-margin {
+    margin-left: 25px;
+}

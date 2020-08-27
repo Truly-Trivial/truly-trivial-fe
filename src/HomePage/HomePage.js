@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { signUp, signIn } from '../quiz-api.js';
 import './HomePage.css';
-import Logo from './truly_trivial_transp.png';
 import '../App.css';
 
 export default class AuthPage extends Component {
@@ -53,14 +52,22 @@ export default class AuthPage extends Component {
     }
 
     render() {
+        const confettiArray = [1,2,3,4,5,6,7,8,9,10];
+
         return (
+            <div className='home-page-container'>
             <div className="auth">
-                <img className="logo" src={Logo} alt="bright logo" />
+                <div className='confetti-container'>
+                    {confettiArray.map((confettiItem, i) => {
+                        return <div key={'conf' + i} className='confetti'><span>$</span><span>$</span></div>
+                    })}
+                </div>
+                <div className="logo-holder"></div>
                 <form className="sign-in" onSubmit={this.handleSignIn}>
                     <span>Sign In?</span>
                     <label>
                         Email:
-                        <input onChange={e => this.setState({ signInEmail: e.target.value })} value={this.state.signInEmail}/>
+                        <input className='email-margin' onChange={e => this.setState({ signInEmail: e.target.value })} value={this.state.signInEmail}/>
                     </label>
                     <label>
                         Password:
@@ -72,7 +79,7 @@ export default class AuthPage extends Component {
                     <span>Sign Up?</span>
                     <label>
                         Email:
-                        <input onChange={e => this.setState({ signupEmail: e.target.value })} value={this.state.signupEmail}/>
+                        <input className='email-margin' onChange={e => this.setState({ signupEmail: e.target.value })} value={this.state.signupEmail}/>
                     </label>
                     <label>
                         Password:
@@ -114,6 +121,7 @@ export default class AuthPage extends Component {
                     </label>
                 </form>
             </div>
+        </div>
         )
     }
 }
