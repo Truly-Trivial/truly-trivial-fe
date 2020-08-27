@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { fetchQuestion, randomizeAnswers, createFavorite } from '../quiz-api.js';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 import './QuizPage.css';
+import '../App.css';
 
 export default class QuizPage extends Component {
 
@@ -135,7 +136,7 @@ export default class QuizPage extends Component {
         const html = this.state.currentQuestion.question
         
         return (
-            <div>
+            <div className="quiz-div">
 
                 <div className="money-display">
                     { 
@@ -160,14 +161,14 @@ export default class QuizPage extends Component {
                     <form onSubmit={this.handleQuizStart}>
                         <label>
                             <button>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
-                            <button onClick={this.handleFavoriteRedirect}>View Your Favorite Questions</button>
+                            <button className="add-to-favorites-button" onClick={this.handleFavoriteRedirect}>View Your Favorite Questions</button>
                         </label>
                     </form>
                 </div> 
                 :
-                <div>
-                    <form className="question-display" onSubmit={this.handleAnswer}>
-                        <p>
+                <div className="question-display">
+                    <form className="question-form" onSubmit={this.handleAnswer}>
+                        <p className="question-text">
                             {ReactHtmlParser(html)}
                         </p>
                             {
@@ -179,9 +180,10 @@ export default class QuizPage extends Component {
                                 })
                             }
                         <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
-                        <button>Submit Answer</button>
+                        <br/>
+                        <button className="submit-answer-button">Submit Answer</button>
                     </form>
-                    <button onClick={this.handleFavorite}>Add This Question to Favorites</button>
+                    <button className="favorite-button" onClick={this.handleFavorite}>Add This Question to Favorites</button>
                 </div>
                 }
             </div>

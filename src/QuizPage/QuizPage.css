@@ -1,0 +1,72 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.quiz-div, .question-form {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.question-display {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.submit-answer-button {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px 8px 8px 10px;
+    border: 1px solid #aaf54f;
+    border-radius: 41px;
+    background: #e4ff1a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#e4ff1a), to(#45e9c0));
+    background: -moz-linear-gradient(top, #e4ff1a, #45e9c0);
+    background: linear-gradient(to bottom, #e4ff1a, #45e9c0);
+    -webkit-box-shadow: #ffff1f 0px 0px 19px 0px;
+    -moz-box-shadow: #ffff1f 0px 0px 19px 0px;
+    box-shadow: #ffff1f 0px 0px 19px 0px;
+    font: normal normal bold 15px arial;
+    color: #111111;
+    text-decoration: none;
+}
+.submit-answer-button:hover,
+.submit-answer-button:focus {
+    background: #ffff1f;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ffff1f), to(#53ffe6));
+    background: -moz-linear-gradient(top, #ffff1f, #53ffe6);
+    background: linear-gradient(to bottom, #ffff1f, #53ffe6);
+    color: #111111;
+    text-decoration: none;
+}
+.submit-answer-button:active {
+    background: #899910;
+    background: -webkit-gradient(linear, left top, left bottom, from(#899910), to(#45e9c0));
+    background: -moz-linear-gradient(top, #899910, #45e9c0);
+    background: linear-gradient(to bottom, #899910, #45e9c0);
+}
+.submit-answer-button:before{
+    content:  "\0000a0";
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    line-height: 24px;
+    margin: 0 4px -6px -4px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABdklEQVRIib3VPUscYRAH8N8t1kFEgkUIBEQtggQJQaxDmjTBQq8RP4Mf4QgiV8cvIClThqS3kbwgpNDGF7DwA8TSwjPFPYtze8+qxFsHhp1n9j8zz7Az/22h0KCUyXs173ujsKsdFKO0W/ikQWnhuskCYxnfGn79Z743+Bwd1Q7+4kV6RimwhPfp/A17+h+ycPNBJ3CK8Rh8nfQSKymgqt2AK7Vbg22nXCXOBTp4GW4bb76cgIdYwNsQ/CGDl3J1Um7H6qXAPn5iMvlmQoHfNQVK+7QIh5w+x6tkz2GqcoEFPAt4FXtgk0uN5+mEeY1dPMl0OF0TO9SSAMjJfThriCriHuQSHLkZxbqEJ7cVjwXK6nGuz/EH3/UX6Cz5Z7GOdwmTiy3KAk/1R+oLDgy3+REbKsuDeWxm8PTHdFWavLhobfWLdhWwV9iqwQ4s2l1UUbZcpYqv+OEeVJFj04eQ3SJ2ouNR6Hq7yQI0/NO/a9FGIo3+9P8BO0VqO98WFnkAAAAASUVORK5CYII=") no-repeat left center transparent;
+    background-size: 100% 100%;
+}
+
+.favorite-button {
+    margin-top: 5px;
+}
