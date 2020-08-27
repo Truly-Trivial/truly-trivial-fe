@@ -2,10 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 80%;
 }
 .barker {
-    margin: 50px;
+    margin: 25px;
     width: 200px;
     height: 200px;
     background-color: transparent;
@@ -13,6 +12,8 @@
     animation-duration: 3000ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear; 
+    background-image: radial-gradient(circle, yellow, yellow, 50%, black);
+    border-radius: 100px;
 }
 
 @keyframes spin {
@@ -24,7 +25,45 @@
     }
 }
 p {
-    color: white;
-    width: 80%;
+    color: black;
+    padding: 10px;
+}
+.fav-questions {
     margin: 10px;
+    text-align: center;
+}
+
+.fav-container {
+    width: 300px;
+    margin: 25px;
+    border-radius: 15px;
+}
+.fav-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 5px;
+    text-align: center;
+    margin: 25px;
+    width: 250px;
+    height: 175px;
+    background-color: var(--color-6);
+    border-radius: 15px;
+    border: 1px solid black;
+    font-family: 'Darker Grotesque', sans-serif;
+    font-weight: bold;
+}
+
+.detail-link {
+    color: black;
+    font-family: 'Darker Grotesque', sans-serif;
+}
+
+@media only screen and (min-width: 750px) {
+    .fav-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        width: 950px;
+    }
 }
