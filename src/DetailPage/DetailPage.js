@@ -24,7 +24,6 @@ export default class DetailPage extends Component {
                     question: fetchedQuestion,
                 })
             }
-            console.log(this.state.question);
         } catch(e) {
             console.log(e.message);
         }
@@ -49,23 +48,23 @@ export default class DetailPage extends Component {
                 <div className="glitter-orange detail-glitter">
                 <div className="detail-display-box">
                     <h3 className="glow-yellow">{ReactHtmlParser(this.state.question.question)}</h3>
-                    <p className="detail-p">Correct Answer: 
+                    <div className="detail-p">Correct Answer: 
                     <div className="detail-sub">{ReactHtmlParser(this.state.question.correct_answer)}</div>
-                    </p>
-                    <p className="detail-p">Incorrect Answers:
+                    </div>
+                    <div className="detail-p">Incorrect Answers:
                         {
                         questionVar.incorrect_answers &&
-                        JSON.parse(this.state.question.incorrect_answers).map((answer) => {
-                            return <div className="detail-sub">{answer}</div>
+                        JSON.parse(this.state.question.incorrect_answers).map((answer, i) => {
+                            return <div className="detail-sub" key={"answer"+i}>{answer}</div>
                         })
                         } 
-                    </p>
-                    <p className="detail-p">Category: 
+                    </div>
+                    <div className="detail-p">Category: 
                     <div className="detail-sub">{this.state.question.category}</div>
-                    </p>
-                    <p className="detail-p">Difficulty: 
+                    </div>
+                    <div className="detail-p">Difficulty: 
                     <div className="detail-sub">{this.state.question.difficulty}</div>
-                    </p>
+                    </div>
                     <button onClick={this.handleDelete} className="detail-delete">Remove From Favorites</button>
                 </div>
                 </div>
