@@ -13,7 +13,7 @@ export default class AboutUsPage extends Component {
                 <h1 className='about-us-title glow-yellow'>About Us</h1>
                 <div className='confetti-container'>
                     {confettiArray.map((confettiItem, i) => {
-                        return <div key={'conf' + i} className='confetti'><span>$</span><span>$</span></div>
+                        return <div key={'conf' + i} className='confetti'><span className='black-text'>$</span><span className='black-text'>$</span></div>
                     })}
                 </div>
                 <div className='about-us-page'>
