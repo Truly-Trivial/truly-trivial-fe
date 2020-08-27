@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import bob from './bob_barker_sticker_face_2.png';
 import './FavoritesPage.css';
+import '../App.css';
 import Header  from '../Header.js';
 import { fetchFavorites } from '../quiz-api';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
@@ -34,19 +35,20 @@ export default class FavoritesPage extends Component {
         return (
             <div  className="fav-page">
             <Header></Header>
-            <div>
+                <h1 className="fav-questions glow-yellow">My Truly Trivial Trivia</h1>
+                <img className="barker" src={bob} alt="bob barker and his smiling face" />
+            <div className="fav-container glitter-green">
                 {
                     this.state.favorites.length > 0 &&
                     this.state.favorites.map((favorite) => {
-                        return <div>
+                        return <div className="fav-div">
                             <p className="question">{ReactHtmlParser(favorite.question)}</p>
-                            <Link to={`/detail/${favorite.id}`}>View Details</Link>
+                            <Link to={`/detail/${favorite.id}`} className="detail-link">View Details</Link>
                             </div>
                     })
                 }
             </div>
             <div>
-            <img className="barker" src={bob} alt="bob barker and his smiling face" />
         </div>
         </div>
         )
