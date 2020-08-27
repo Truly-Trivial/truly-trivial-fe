@@ -15,10 +15,17 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
+    border: solid 1px white;
+    border-radius: 15px;
+    padding: 10px 5px 10px 5px;
+    margin: 20px; 
 }
+
+
 
 .question-form {
     background-color: rgba(0, 0, 0, .5);
+    margin-bottom: 25px;
 }
 
 .question-display {
@@ -79,59 +86,13 @@ main {
     background-size: 100% 100%;
 }
 
+.bet {
+  padding: 10px;
+}
+
 .favorite-button {
     margin-top: 5px;
-    margin-bottom: 10px;
-}
-
-.favorite-button {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    padding: 5px 8px 8px 12px;
-    border: 1px solid #f5df4f;
-    border-radius: 41px;
-    background: var(--color-5);
-    background: -webkit-gradient(linear, left top, left bottom, from(var(--color-4)), to(var(--color-6)));
-    background: -moz-linear-gradient(top, var(--color-4), var(--color-6));
-    background: linear-gradient(to bottom, var(--color-4), var(--color-6));
-    -webkit-box-shadow: var(--color-5) 0px 0px 10px 0px;
-    -moz-box-shadow: var(--color-5) 0px 0px 10px 0px;
-    box-shadow: var(--color-5) 0px 0px 10px 0px;
-    font: normal normal bold 12px arial;
-    color: #000000;
-    text-decoration: none;
-}
-
-.favorite-button:hover,
-.favorite-button:focus {
-    background: #fffffb;
-    background: -webkit-gradient(linear, left top, left bottom, from(#fffffb), to(#fffe8a));
-    background: -moz-linear-gradient(top, #fffffb, #fffe8a);
-    background: linear-gradient(to bottom, #fffffb, #fffe8a);
-    color: #000000;
-    text-decoration: none;
-}
-
-.favorite-button:active {
-    background: #96997d;
-    background: -webkit-gradient(linear, left top, left bottom, from(#96997d), to(#fad473));
-    background: -moz-linear-gradient(top, #96997d, #fad473);
-    background: linear-gradient(to bottom, #96997d, #fad473);
-}
-
-.favorite-button:after{
-    content:  "\0000a0";
-    display: inline-block;
-    height: 24px;
-    width: 24px;
-    line-height: 24px;
-    margin: 0 -4px -6px 4px;
-    position: relative;
-    top: 0px;
-    left: 0px;
-    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAB+ElEQVRIibWVvUsDQRDFf1mCSCoLi6AiCKIWVkmT0tLKysLCSqyD2GglWEjwD7C2Cin8K8TeyviBiCiKBAQRET+Ts9i3eLe3l8TChcdOZt/Mvp2b3eQAwz8Ol7yTsR73F4F9oZjBCdr+CUzANkADiISGt9YttusGbkwBX8Cl8AVMBnjBYfrAnpQvCJF8/cSmjuX/HgZegSYwIDTlGw7wU3avLtqW4pWYb0W+7V4b5DzngFSNAePCBvAOTGsGGAQuNO8Ct8Id8Ah8xhUaYA378V6ANr/d4rAaULca4LWV41I5TQ7b0/cKOgZOpORaqs41+6I6OuGM5gmdfBYoaX0UYAh4koIl+uuMblhSriflxgBzwDPwASx7Sv9iLyvHs3ImCCWgha1j1QvsNYxi2spR8hfdPIOtfQRs0X9ZthRzrRyZFw3sBztTQCUgxLcr4jYVm+CEynAL1GUPxvxZr2ZBc4Nkt3UA8hmqysA3cJohIj5OxC1ncUOv6Q1wRbosecH3XykmVcbQjkVgBHvpXCkKwDq2Q1qyXWk64o6Q8UcU7yIDzGM/2qbULmKvfgQ8CJF8i+JsyjdPusNSp3DkA+BI9huwg72ZQ7LftHYorhPlC09tUCX5eNVJtp8b41qLP47VAC9VogJQU3AlcGQfFXFriu1Zor++P13tH9UxiapZMjwSAAAAAElFTkSuQmCC") no-repeat left center transparent;
-    background-size: 100% 100%;
+    margin-bottom: 25px;
 }
 
 .question-sign {
@@ -307,17 +268,65 @@ main {
     }
 }
 
-.money-display, .question-form, .quiz-div {
-    border: solid 1px white;
-    border-radius: 15px;
-    padding: 10px 5px 10px 5px;
-    margin: 20px; 
-}
-
 .quiz-div {
     width: 80%;
+    box-shadow: 0 0 10px 5px #ff2483;
+    border: solid 1px #ff2483;
 }
 
 .rounded-border {
     border-radius: 15px;
+}
+
+.question-text, .dollar-display, .money-text {
+  color: white;
+}
+
+.money-display {
+  background-color: black;
+  box-shadow: 0 0 10px 5px #ff2483;
+  border: solid 1px #ff2483;
+}
+
+.favorite-button {
+  color: white;
+  border: 2px solid white;
+  background-color: black;
+  padding: 10px;
+  border-radius: 25px;
+}
+
+.favorite-button:hover {
+  background-color: var(--color-6);
+  color: black;
+}
+
+.start-quiz-button {
+  margin-right: 25px;
+  color: white;
+  border: 2px solid white;
+  background-color: black;
+  padding: 5px;
+}
+
+.view-favorites-button {
+  margin-left: 25px;
+  color: white;
+  border: 2px solid white;
+  background-color: black;
+  padding: 5px;
+}
+
+.margin-bottom {
+  margin-bottom: 10px;
+}
+
+.max-width, .money-display {
+  width: 280px;
+}
+
+@media only screen and (min-width: 500px) {
+  .max-width, .money-display {
+    width: 60%;
+  }
 }
