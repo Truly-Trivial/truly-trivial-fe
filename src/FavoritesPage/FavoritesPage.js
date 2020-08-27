@@ -32,14 +32,14 @@ export default class FavoritesPage extends Component {
 
     render() {
         return (
-            <>
+            <div  className="fav-page">
             <Header></Header>
             <div>
                 {
                     this.state.favorites.length > 0 &&
                     this.state.favorites.map((favorite) => {
                         return <div>
-                            <p>{ReactHtmlParser(favorite.question)}</p>
+                            <p className="question">{ReactHtmlParser(favorite.question)}</p>
                             <Link to={`/detail/${favorite.id}`}>View Details</Link>
                             </div>
                     })
@@ -48,7 +48,7 @@ export default class FavoritesPage extends Component {
             <div>
             <img className="barker" src={bob} alt="bob barker and his smiling face" />
         </div>
-        </>
+        </div>
         )
     }
 }
