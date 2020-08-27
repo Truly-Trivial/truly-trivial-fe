@@ -99,6 +99,10 @@
     height: 100%;
 }
 
+.dollar {
+    color: black
+}
+
 /* https://forum.webflow.com/t/add-falling-confetti-with-css/103687 */
 .confetti {
     display: flex;
