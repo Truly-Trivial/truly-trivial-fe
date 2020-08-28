@@ -58,7 +58,7 @@ export default class AboutUsPage extends Component {
                             <div className='about-info'>
                                 <h3>Thomas Stussi</h3>
                                 <div className='thomas-image about-image'></div>
-                                <p className='about-paragraph'>Here are some words describing name. We will probably write a few sentences and they should be a little longer than this, but not too long or else it will look very busy for mobile users. He plans to use his winnings to turn his car into and animatronic dragon.</p>
+                                <p className='about-paragraph'>This is Thomas. Thomas is a software developer from Portland, a fan of fantasy with a penchant for pedantics. He plans to use his winnings to turn his car into and animatronic dragon.</p>
                             </div>
                             <div className='about-links'>
                                 <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/thomas-stussi-864530179/">
