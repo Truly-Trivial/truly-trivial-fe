@@ -82,11 +82,6 @@ export default class QuizPage extends Component {
         e.preventDefault();
         try {
             if (this.state.questionCount === 10) {
-                await this.setState({
-                    endGame: true,
-                    questionCount: 0,
-                    hasPlayed: true,
-                })
                 if (this.state.guess === this.state.currentQuestion.correct_answer) {
                     await this.setState({
                         money: Number(this.state.money) + Number(this.state.bet),
@@ -100,6 +95,11 @@ export default class QuizPage extends Component {
                     });
                 }
 
+                await this.setState({
+                    endGame: true,
+                    questionCount: 0,
+                    hasPlayed: true,
+                }) 
             } else {
                 if (this.state.guess === this.state.currentQuestion.correct_answer) {
                     await this.setState({

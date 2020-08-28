@@ -29,6 +29,7 @@ export function fetchQuestion() {
     }
 }
 
+//https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array/46161940
 export function randomizeAnswers(answersToRandomize) {
 
     for (var i = answersToRandomize.length - 1; i > 0; i--) {
