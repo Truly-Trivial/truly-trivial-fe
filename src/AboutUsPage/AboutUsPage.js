@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './AboutUsPage.css';
 import Header from '../Header.js'
 
+// defining consts should happen in global scope--otherwise it will be recreated on every single call to the render method
+const confettiArray = [1,2,3,4,5,6,7,8,9,10];
+
 export default class AboutUsPage extends Component {
-
     render() {
-        const confettiArray = [1,2,3,4,5,6,7,8,9,10];
-
         return (
             <>
                 <Header></Header>

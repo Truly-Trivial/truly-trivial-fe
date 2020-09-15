@@ -27,7 +27,8 @@ export default class QuizPage extends Component {
     }
 
     onBetChange = async (e) => {
-        await this.setState({
+        // the await is only necessary if you do stuff in the function after setState that depends on the state
+        this.setState({
             bet: e.target.value,
         })
     }
@@ -35,13 +36,11 @@ export default class QuizPage extends Component {
     onValueChange = async (e) => {
         console.log(this.state);
         console.log(e.target.value);
-
-        await this.setState({
+        // the await is only necessary if you do stuff in the function after setState that depends on the state
+        this.setState({
           guess: this.state.randomizedAnswers[e.target.value]
         });
 
-        console.log(this.state);
-        console.log(this.state.guess);
       }
 
 
@@ -54,7 +53,7 @@ export default class QuizPage extends Component {
                 currentQuestion: questionData.body.results[0], 
                 questionCount: 1,
                 endGame: false, 
-            })
+            });
 
             this.handleRandomizer();
 
@@ -65,10 +64,9 @@ export default class QuizPage extends Component {
 
     handleRandomizer = async (e) => {
         try {
-            const unrandomizedAnswers = [];
-            this.state.currentQuestion.incorrect_answers.map((answer) => {
-                return unrandomizedAnswers.push(answer)
-            });
+            // seems like you're just making a copy of this.state.currentQuestion.incorrect_answers here . . .
+            const unrandomizedAnswers = this.state.currentQuestion.incorrect_answers.slice();
+
             unrandomizedAnswers.push(this.state.currentQuestion.correct_answer)
             await randomizeAnswers(unrandomizedAnswers);
 
@@ -78,6 +76,7 @@ export default class QuizPage extends Component {
         }  
     }
 
+    // This is a big, complex function! might have made sense to try and abstract this out into a few methods, maybe even a few functions in another file?
     handleAnswer = async (e) => {
         e.preventDefault();
         try {
@@ -97,12 +96,10 @@ export default class QuizPage extends Component {
                         money: Number(this.state.money) - Number(this.state.bet),
                         lastAnswerCorrect: false,
                         lastAnswer: this.state.currentQuestion.correct_answer,
-                    });
-                    await this.setState({
                         endGame: true,
                         questionCount: 0,
                         hasPlayed: true,
-                    }) 
+                    });
                 }
             } else {
                 if (this.state.guess === this.state.currentQuestion.correct_answer) {
@@ -121,6 +118,7 @@ export default class QuizPage extends Component {
                 const questionData = await fetchQuestion(this.props.token)
                 this.setState({ 
                     currentQuestion: questionData.body.results[0], 
+                    // nice!
                     questionCount: this.state.questionCount + 1,
                     randomizedAnswers: [],
                 })
@@ -143,6 +141,7 @@ export default class QuizPage extends Component {
                 correct_answer: question.correct_answer,
                 incorrect_answers: question.incorrect_answers
             })
+            // i'd rather this be handled with some kind of react code instead of a browser alert
             alert('Added to Favorites')
         } catch(e) {
             console.log(e.message);
@@ -152,10 +151,47 @@ export default class QuizPage extends Component {
     handleFavoriteRedirect = () => {
         this.props.history.push('/favorites');
     }
-    
-    render() {
+
+    // This is one way to abstract this work out--the render method was getting pretty big. Probably the right way to do this would be to make another component in another file.
+    renderQuiz = () => {
         const html = this.state.currentQuestion.question
-        
+
+        return this.state.endGame 
+            ? 
+            <div className="start-quiz">
+                <form onSubmit={this.handleQuizStart}>
+                    <label className='margin-bottom'>
+                        <button className='start-quiz-button'>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
+                        <button className="view-favorites-button" onClick={this.handleFavoriteRedirect}>View Favorites</button>
+                    </label>
+                </form>
+            </div> 
+            :
+            <div className="max-width margin-bottom glitter-green rounded-border">
+                <div className="question-display">
+                    
+                    <form className="question-form" onSubmit={this.handleAnswer}>
+                        <p className="question-text">
+                            {ReactHtmlParser(html)}
+                        </p>
+                            {
+                                this.state.randomizedAnswers.map((answer, i) => {    
+                                return <label key={'answer' + i}>
+                                        {ReactHtmlParser(answer)}
+                                    <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
+                                    </label>
+                                })
+                            }
+                        <br />Bet $ <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
+                        <br/>
+                        <button className="submit-answer-button">Submit Answer</button>
+                    </form>
+                    <button className="favorite-button" onClick={this.handleFavorite}>Add to Favorites</button>
+                </div>
+            </div>
+    }
+
+    render() {
         return (
             <div className="quiz-div">
                 <div className="question-sign">
@@ -165,52 +201,16 @@ export default class QuizPage extends Component {
                     { 
                     this.state.questionCount > 1 &&
                     <p className="money-text">
-                        {
+                        { 
                         this.state.lastAnswerCorrect 
-                        ?
-                        'Correct!'
-                        :
-                        `Too bad! The correct answer was ${this.state.lastAnswer}`
+                            ? 'Correct!'
+                            : `Too bad! The correct answer was ${this.state.lastAnswer}`
                         }
                     </p>
                     }
-        
                     <p className='dollar-display'>You have ${this.state.money}</p>
                 </div>
-                { this.state.endGame 
-                ? 
-                <div className="start-quiz">
-                    <form onSubmit={this.handleQuizStart}>
-                        <label className='margin-bottom'>
-                            <button className='start-quiz-button'>{ this.state.hasPlayed ? 'Play Again' : 'Start Quiz!' }</button>
-                            <button className="view-favorites-button" onClick={this.handleFavoriteRedirect}>View Favorites</button>
-                        </label>
-                    </form>
-                </div> 
-                :
-                <div className="max-width margin-bottom glitter-green rounded-border">
-                    <div className="question-display">
-                        
-                        <form className="question-form" onSubmit={this.handleAnswer}>
-                            <p className="question-text">
-                                {ReactHtmlParser(html)}
-                            </p>
-                                {
-                                    this.state.randomizedAnswers.map((answer, i) => {    
-                                    return <label key={'answer' + i}>
-                                            {ReactHtmlParser(answer)}
-                                        <input onChange={this.onValueChange} type="radio" name="multiple-choice" value={i} key={'answer' + i} />
-                                        </label>
-                                    })
-                                }
-                            <br />Bet $ <input min="1000" max="10000" className="bet" onChange={this.onBetChange} type="number" value={this.state.bet}></input> 
-                            <br/>
-                            <button className="submit-answer-button">Submit Answer</button>
-                        </form>
-                        <button className="favorite-button" onClick={this.handleFavorite}>Add to Favorites</button>
-                    </div>
-                </div>
-                }
+                { this.renderQuiz() }
             </div>
         )
     }

@@ -67,6 +67,7 @@ export default class App extends Component {
                       />
                   </Switch>
                   <div>
+                    {/* great idea, putting the logout here outside the switch */}
                     <Link to='/' className="button-link"><button className="logout-button" onClick={this.clearToken}>Log Out</button></Link>
                   </div>
                 </main>

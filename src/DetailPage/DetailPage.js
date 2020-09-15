@@ -20,7 +20,8 @@ export default class DetailPage extends Component {
                 const data = await fetchFavorite(this.props.match.params.id)
                 const fetchedQuestion = data.body[0]
 
-                await this.setState({
+                // the await is usually only necessary if you're doing work after the setState in the same method
+                this.setState({
                     question: fetchedQuestion,
                 })
             }
@@ -40,6 +41,11 @@ export default class DetailPage extends Component {
 
     render() {
         const questionVar = this.state.question
+        const incorrectAnswers = JSON.parse(this.state.question.incorrect_answers)
+            .map((answer, i) => <div className="detail-sub" key={"answer"+i}>
+                {answer}
+            </div>
+        );
 
         return (
             <>
@@ -54,9 +60,7 @@ export default class DetailPage extends Component {
                     <div className="detail-p">Incorrect Answers:
                         {
                         questionVar.incorrect_answers &&
-                        JSON.parse(this.state.question.incorrect_answers).map((answer, i) => {
-                            return <div className="detail-sub" key={"answer"+i}>{answer}</div>
-                        })
+                            incorrectAnswers
                         } 
                     </div>
                     <div className="detail-p">Category: 
