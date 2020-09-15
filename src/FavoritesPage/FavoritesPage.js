@@ -9,7 +9,6 @@ import { fetchFavorites } from '../quiz-api';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 export default class FavoritesPage extends Component {
-
     state = {
         favorites: []
     }
